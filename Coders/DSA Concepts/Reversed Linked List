@@ -1,0 +1,81 @@
+import java.util.*;
+import java.io.*;
+
+class Main {
+    //This a Node class
+    public static class ListNode{
+        int data;
+        ListNode next=null;
+        
+        ListNode(int data){
+           this.data = data; 
+        }
+    }
+    
+    //Data is add at the end of Linked List
+    public static ListNode add(int data,ListNode head) {
+		
+		ListNode n = new ListNode(data);
+		
+		if(head==null) {
+			head = n;
+		}else {
+			ListNode t = head;
+			while(t.next!=null) {
+				t=t.next;
+			}
+			t.next = n;
+		}
+		return head;
+		
+	}
+    //This function is to display elements in the Linked List
+    public static void show(ListNode head) {
+        System.out.print("The given linked list is: \n");
+		ListNode t = head;
+		if(head==null) {
+			System.out.print("list is empty");
+		}else {
+			while(t.next!=null) {
+				System.out.print(t.data+"\n");
+				t=t.next;
+			}
+			System.out.print(t.data+"\n");
+			
+		}
+    }
+    
+    //This function is for reversing the Linked List
+    public static ListNode reverseList(ListNode head) {
+        ListNode p = null;
+        ListNode n = null;
+        ListNode curr = head;
+        
+        while(curr!=null){
+            n = curr.next;
+            curr.next = p;
+            p= curr;
+            curr = n;
+        }
+        head = p;
+        
+        return head;
+    }
+  
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        ListNode head = null;
+        LinkedList l = new LinkedList();
+        
+        System.out.print("Enter the number of elements:");
+        
+        int n = sc.nextInt();
+        
+        for(int i=0;i<n;i++){
+            int k = sc.nextInt();
+            head = add(k,head);
+        }
+       show(reverseList(head)); 
+       
+    }
+}
